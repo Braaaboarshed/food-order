@@ -1,0 +1,70 @@
+
+<div class="nodata" *ngIf="nodata"  id="notFound" >
+  <h1> you do not have any item in your cart yet</h1>
+</div>
+<div class="container" *ngIf="!nodata" >
+  <div class="content">
+    <h1>order</h1>
+
+    <form [formGroup]="checkoutForm" (ngSubmit)="createOrder()" >
+      <div class="order-box">
+
+          <label>username </label>
+          <input type="text" class="name" placeholder="Enter name"  formControlName="name" require>
+            <p class="error" *ngIf="checkoutForm.controls['name'].invalid && checkoutForm.controls['name'].touched">
+              please enter a valid email
+            </p>
+          <label>Address : </label>
+          <input type="address" placeholder="Enter address" formControlName="address" required>
+          <p class="error" *ngIf="checkoutForm.controls['address'].invalid && checkoutForm.controls['address'].touched">
+            please enter a valid password
+          </p>
+          <button type="submit" class="save-btn" *ngIf="show"  (click)="show =false"  [disabled]="checkoutForm.invalid" >Save</button>
+
+      </div>
+  </form>
+      <table *ngIf="!show" >
+        <tr>
+          <td colspan="5">
+            <h3>Order Items:</h3>
+          </td>
+        </tr>
+        <tr *ngFor="let item of order.items">
+          <td>
+            <a routerLink="/food/{{item.food.id}}">
+              <img [src]="item.food.imageUrl"/>
+            </a>
+          </td>
+          <td>
+            {{item.food.name}}
+          </td>
+          <td>
+            {{item.food.price | currency}}
+          </td>
+          <td>
+            {{item.quantity}}
+          </td>
+          <td>
+            {{item.price | currency}}
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3"></td>
+          <td>
+            <strong>
+              Total :
+            </strong>
+          </td>
+          <td>
+            <strong>
+              {{order.totalPrice | currency}}
+            </strong>
+          </td>
+        </tr>
+      </table>
+          <button class="payment" *ngIf="!show"  (click)="createOrder()">
+            Order Now
+          </button>
+
+  </div>
+</div>

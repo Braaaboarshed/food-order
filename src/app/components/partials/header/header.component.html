@@ -1,0 +1,61 @@
+<!-- <header>
+
+
+
+  <div class="container">
+    <a routerLink="/" class="logo">X FOOD</a>
+    <nav>
+      <ul>
+        <li *ngIf="!user.username">
+          <a routerLink="/login">Login</a>
+        </li>
+        <li  >
+          <a routerLink="/register" *ngIf="!user.username">Register</a>
+        </li>
+        <li class="menu-container" *ngIf="user.token ||user.email" >
+          <a routerLink="/dashboard">{{user.username}}</a>
+          <div class="menu">
+            <a routerLink="/checkout">Orders</a>
+            <a (click)="logout()">Logout</a>
+          </div>
+        </li>
+        <li>
+          <a routerLink="/cart-page">
+            Cart <span *ngIf="inCart >0" >{{inCart}}</span>
+          </a>
+        </li>
+        <li class="icon">
+          <a (click)="navbar = !navbar" >
+            <i class="fa fa-bars"></i>
+
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+
+  </div>
+</header> -->
+
+<div class="header">
+    <a routerLink="/" class="logo">X FOOD</a>
+  <div class="header-right">
+    <a
+    *ngIf="!user.username"
+    routerLink="/login">
+      Login
+  </a>
+    <a
+    routerLink="/register"
+    *ngIf="!user.username">
+  Register
+  </a>
+    <a *ngIf="user.token ||user.email">{{user.username}}</a>
+    <a routerLink="/checkout">Orders</a>
+    <a routerLink="/cart-page">
+      Cart <span class="cart-count" *ngIf="inCart >0" >{{inCart}}</span>
+    </a>
+    <a *ngIf="user.token || user.username"  (click)="logout()">Logout</a>
+
+  </div>
+</div>

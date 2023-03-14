@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title> Register Page </title>
+
+</head>
+<body>
+
+<div class="container">
+  <form [formGroup]="registerForm" (ngSubmit)="register()" >
+      <div class="container">
+
+          <label>username </label>
+          <input type="text" placeholder="Enter username"  formControlName="username" require>
+            <p class="error" *ngIf="registerForm.controls['username'].invalid && registerForm.controls['username'].touched">
+              please enter a valid email
+            </p>
+
+            <label>email </label>
+            <input type="text" placeholder="Enter email"  formControlName="email" require>
+              <p class="error" *ngIf="registerForm.controls['email'].invalid && registerForm.controls['email'].touched">
+                please enter a valid email
+              </p>
+
+          <label>Password : </label>
+          <input type="password" placeholder="Enter Password" formControlName="password" required>
+          <p class="error" *ngIf="registerForm.controls['password'].invalid && registerForm.controls['password'].touched">
+            please enter a valid password
+          </p>
+          <button type="submit"  [disabled]="registerForm.invalid"  >Submit</button>
+
+      </div>
+  </form>
+
+
+</div>
+
+
+</body>
+</html>
